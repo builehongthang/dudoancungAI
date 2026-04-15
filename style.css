@@ -137,7 +137,7 @@ body{
 }
 .wt-line1{
   font-size:clamp(1.6rem,3.5vw,2.8rem);
-  color:#e67e22;
+  color:#160c03;
   text-shadow:2px 2px 0 rgba(230,126,34,.2);
   animation:titleWave 3s ease-in-out infinite;
 }
@@ -762,7 +762,7 @@ body.boss-mode #ai-panel{border-color:#e74c3c;box-shadow:4px 4px 0 #e74c3c}
 #game-logo{
   position:absolute;
   bottom:0;right:0;
-  width:160px;height:auto;
+  width:3000px;height:auto;
   opacity:.85;
   z-index:100;
   pointer-events:none;
