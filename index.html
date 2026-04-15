@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đoán Đồ Vật Qua Gợi Ý</title>
+  <link rel="stylesheet" href="style.css?v=5"/>
+</head>
+<body>
+
+<!-- LAPTOP SHELL -->
+<div id="laptop-shell">
+  <div id="laptop-screen">
+    <div id="laptop-inner">
+
+      <!-- ===== WELCOME ===== -->
+      <div id="screen-welcome" class="screen active">
+        <!-- Doodle nền -->
+        <div class="doodle-animal cat">🐱</div>
+        <div class="doodle-animal bird">🐦</div>
+        <div class="doodle-animal bunny">🐰</div>
+        <div class="doodle-animal star1">⭐</div>
+        <div class="doodle-animal star2">✨</div>
+        <div class="doodle-animal star3">🌟</div>
+        <div class="doodle-animal star4">💫</div>
+
+        <div class="welcome-layout">
+          <!-- Trái: Robot slideshow -->
+          <div class="welcome-left">
+            <div class="robot-stage">
+              <div class="robot-glow"></div>
+              <img id="welcome-robot-img"
+                src="cam_xuc_robot/vui_vẻ_01-removebg-preview.png"
+                alt="Robot" class="welcome-robot-img"/>
+            </div>
+          </div>
+
+          <!-- Phải: Nội dung -->
+          <div class="welcome-right">
+            <h1 class="welcome-title">
+              <span class="wt-line1">NHÀ DỰ ĐOÁN</span>
+              <span class="wt-line2">THÔNG THÁI</span>
+            </h1>
+            <p class="welcome-caption">
+              Bạn có đủ thông minh để <strong>đoán trước cả AI</strong> không?<br/>
+              Hãy thử thách bản thân ngay!
+            </p>
+            <button class="btn-start" onclick="showScreen('screen-intro')">
+              🚀 Bắt đầu thôi!
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== INTRO - CHỌN CHẾ ĐỘ ===== -->
+      <div id="screen-intro" class="screen">
+        <!-- Doodle nền -->
+        <div class="intro-doodle d1">🌈</div>
+        <div class="intro-doodle d2">⭐</div>
+        <div class="intro-doodle d3">🎯</div>
+        <div class="intro-doodle d4">🏆</div>
+        <div class="intro-doodle d5">💡</div>
+        <div class="intro-doodle d6">🎮</div>
+        <div class="intro-doodle d7">✨</div>
+        <div class="intro-doodle d8">🌟</div>
+
+        <div class="intro-box">
+          <div class="intro-title-wrap">
+            <span class="intro-emoji-l"></span>
+            <h2 class="intro-heading">Chọn chế độ chơi!</h2>
+            <span class="intro-emoji-r"></span>
+          </div>
+          <p class="intro-sub">Bạn muốn thử sức ở mức nào? </p>
+
+          <div class="mode-grid">
+            <button class="mode-btn easy-btn" onclick="selectMode('easy')">
+              <img src="cap_độ_robot/dễ.png" class="mode-robot-img" alt="Dễ"/>
+              <span class="mode-name"> Dễ</span>
+              <span class="mode-desc">Thư giãn · AI chậm · 40s</span>
+            </button>
+            <button class="mode-btn medium-btn" onclick="selectMode('medium')">
+              <img src="cap_độ_robot/trung bình.png" class="mode-robot-img" alt="Trung Bình"/>
+              <span class="mode-name"> Trung Bình</span>
+              <span class="mode-desc">Vừa sức · AI vừa · 30s</span>
+            </button>
+            <button class="mode-btn hard-btn" onclick="selectMode('hard')">
+              <img src="cap_độ_robot/khó.png" class="mode-robot-img" alt="Khó"/>
+              <span class="mode-name"> Khó</span>
+              <span class="mode-desc">Thử thách · AI nhanh · 20s</span>
+            </button>
+            <button class="mode-btn predict-btn" onclick="selectMode('predict')" style="display:none">
+              <span class="mode-icon">🧠</span>
+              <span class="mode-name">Đoán Ý AI</span>
+            </button>
+          </div>
+
+          <p class="intro-footer">5 câu hỏi · Ai nhanh hơn thắng! 🏆</p>
+        </div>
+      </div>
+
+      <!-- ===== GAME ===== -->
+      <div id="screen-game" class="screen">
+        <div id="top-bar">
+          <div id="mode-badge"></div>
+          <!-- Header nằm giữa top-bar -->
+          <div id="header">
+            <div class="score-box ai-side">
+              <span class="label" id="ai-label">🤖 AI</span>
+              <span id="score-ai" class="score">0</span>
+            </div>
+            <div id="round-info">Câu <span id="round-num">1</span> / <span id="round-total">5</span></div>
+            <div id="timer-box">
+              <svg id="timer-svg" viewBox="0 0 60 60">
+                <circle cx="30" cy="30" r="26" class="timer-bg"/>
+                <circle cx="30" cy="30" r="26" class="timer-ring" id="timer-ring"/>
+              </svg>
+              <span id="timer-text">40</span>
+            </div>
+            <div class="score-box player-side">
+              <span class="label">👤 Bạn</span>
+              <span id="score-player" class="score">0</span>
+            </div>
+          </div>
+          <div id="phase-badge" style="display:none"></div>
+          <button id="btn-quit" onclick="showScreen('screen-intro')">✕ Thoát</button>
+        </div>
+        <div id="event-banner" class="hidden" style="display:none!important"></div>
+        <div id="game-body">
+          <div id="ai-panel" class="side-panel">
+            <div class="avatar" id="ai-avatar"><img src="cam_xuc_robot/đang suy nghĩ.png" alt="AI" id="ai-emotion-img"/></div>
+            <div class="panel-label" id="ai-panel-label">AI</div>
+            <div id="ai-bubble" class="speech-bubble hidden"></div>
+            <div id="ai-thinking" class="thinking-box">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <div id="ai-answer" class="answer-badge hidden"></div>
+          </div>
+          <div id="center-panel">
+            <div id="predict-mode-box" class="hidden">
+              <div class="predict-title">🧠 AI đang suy luận... Bạn đoán AI sẽ chọn gì?</div>
+              <div id="predict-choices-main"></div>
+              <div id="predict-result-msg" class="hidden"></div>
+            </div>
+            <div id="normal-mode-box">
+              <div id="hints-box">
+                <div id="hints-header">
+                  <h3>🔍 Gợi ý:</h3>
+                  <div id="hint-count-badge"></div>
+                </div>
+                <!-- CAROUSEL -->
+                <div id="hint-carousel">
+                  <button id="hint-prev" onclick="hintNav(-1)">◀</button>
+                  <div id="hint-display">
+                    <div id="hint-text"></div>
+                  </div>
+                  <button id="hint-next" onclick="hintNav(1)">▶</button>
+                </div>
+                <!-- dots -->
+                <div id="hint-dots"></div>
+                <!-- list ẩn vẫn giữ để tương thích code cũ -->
+                <ul id="hints-list" style="display:none"></ul>
+              </div>
+              <div id="predict-event-box" class="hidden">
+                <div class="predict-label">🧠 Đoán xem AI sẽ chọn gì? <span class="predict-bonus">+1 điểm thưởng!</span></div>
+                <div id="predict-event-choices"></div>
+              </div>
+              <div id="choices-box">
+                <button class="choice-btn" onclick="playerChoose(0)"></button>
+                <button class="choice-btn" onclick="playerChoose(1)"></button>
+                <button class="choice-btn" onclick="playerChoose(2)"></button>
+                <button class="choice-btn" onclick="playerChoose(3)"></button>
+              </div>
+              <div id="powerup-bar" style="display:none">
+                <div class="pu-bar-label">⚡ Kỹ năng:</div>
+                <div id="powerup-slots"></div>
+              </div>
+            </div>
+            <div id="round-result" class="hidden"></div>
+          </div>
+          <div id="player-panel" class="side-panel">
+            <div class="avatar" id="player-avatar">👤</div>
+            <div class="panel-label">Bạn</div>
+            <div id="player-status" class="thinking-box">Đang chờ...</div>
+            <div id="player-answer" class="answer-badge hidden"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== HƯỚNG DẪN ===== -->
+      <div id="screen-howto" class="screen">
+        <div class="intro-doodle d1">🎯</div>
+        <div class="intro-doodle d2">⭐</div>
+        <div class="intro-doodle d3">💡</div>
+        <div class="intro-doodle d4">🏆</div>
+        <div class="intro-doodle d5">🤖</div>
+        <div class="intro-doodle d6">✨</div>
+
+        <div class="howto-box">
+          <div class="howto-header">
+            <span class="howto-emoji"></span>
+            <h2 class="howto-title">Cách chơi</h2>
+            <span class="howto-emoji"></span>
+          </div>
+
+          <div class="howto-steps">
+            <div class="howto-step">
+              <div class="step-icon"></div>
+              <div class="step-text">Đọc từng <strong>gợi ý</strong> xuất hiện dần dần</div>
+            </div>
+            <div class="howto-step">
+              <div class="step-icon"></div>
+              <div class="step-text">Đoán xem đó là <strong>đồ vật gì</strong>?</div>
+            </div>
+            <div class="howto-step">
+              <div class="step-icon"></div>
+              <div class="step-text">Bấm vào <strong>đáp án đúng</strong> trước khi AI!</div>
+            </div>
+            <div class="howto-step">
+              <div class="step-icon"></div>
+              <div class="step-text">Trả lời <strong>càng sớm</strong> được <strong>càng nhiều điểm</strong>!</div>
+            </div>
+          </div>
+
+          <div class="howto-score-info">
+            <span class="score-chip s100">Gợi ý 1 = 100 điểm</span>
+            <span class="score-chip s90">Gợi ý 2 = 90 điểm</span>
+            <span class="score-chip s80">Gợi ý 3 = 80 điểm</span>
+          </div>
+
+          <p class="howto-quote">"Bạn có thể đánh bại AI không?  Hãy chứng minh nào!"</p>
+
+          <div class="howto-actions">
+            <button class="btn-start" onclick="goToGender()">🚀 Tôi sẵn sàng!</button>
+            <div id="howto-countdown" class="howto-auto">Tự động bắt đầu sau <span id="howto-sec">6</span>s</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHỌN GIỚI TÍNH ===== -->
+      <div id="screen-gender" class="screen">
+        <div class="gender-box">
+          <div class="gender-title">Bạn là ai?</div>
+          <div class="gender-grid">
+            <button class="gender-btn" onclick="selectGender('nam')">
+              <img src="gioi_tinh_player/nam.jpg" alt="Nam" class="gender-img"/>
+              <span class="gender-label"> Nam</span>
+            </button>
+            <button class="gender-btn" onclick="selectGender('nữ')">
+              <img src="gioi_tinh_player/nữ.jpg" alt="Nữ" class="gender-img"/>
+              <span class="gender-label"> Nữ</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- ===== COUNTDOWN ===== -->
+      <div id="screen-countdown" class="screen">
+        <div id="countdown-bg">
+          <div id="cd-left">
+            <img id="cd-ai-img" src="cam_xuc_robot/có nguy hiểm.png" alt="AI"/>
+            <div class="cd-name">AI</div>
+          </div>
+          <div id="cd-center">
+            <div id="cd-number">3</div>
+            <div id="cd-ready">Sẵn sàng chưa?</div>
+          </div>
+          <div id="cd-right">
+            <img id="cd-player-img" src="gioi_tinh_player/nam.jpg" alt="Bạn"/>
+            <div class="cd-name">Bạn</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="screen-boss-transition" class="screen">
+        <div class="boss-transition-box">
+          <div id="bt-phase-result"></div>
+          <div class="bt-vs">🔥</div>
+          <div class="bt-title">BOSS AI XUẤT HIỆN!</div>
+          <div class="bt-desc">AI phản ứng cực nhanh · Dùng kỹ năng để cản!</div>
+          <div id="bt-score-preview"></div>
+          <div id="bt-powerups-preview" class="bt-powerups"></div>
+          <button class="btn-primary" onclick="startBossPhase()">Chiến thôi!</button>
+        </div>
+      </div>
+
+      <!-- ===== RESULT ===== -->
+      <div id="screen-result" class="screen">
+        <div class="result-box">
+          <div id="result-icon" class="result-icon"></div>
+          <h2 id="result-title"></h2>
+          <div id="result-scores" class="result-scores"></div>
+          <div id="result-history" class="result-history"></div>
+          <div class="result-actions">
+            <button onclick="showScreen('screen-intro')">Menu</button>
+            <button onclick="replayGame()">Chơi lại</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /laptop-inner -->
+  </div><!-- /laptop-screen -->
+
+  <!-- LOGO góc phải dưới -->
+  <img id="game-logo" src="logo.png" alt="Logo"/>
+
+</div><!-- /laptop-shell -->
+
+  <!-- AUDIO -->
+  <audio id="bgm" loop>
+    <source src="bgm.mp3" type="audio/mpeg"/>
+  </audio>
+
+  <!-- Nút tắt/bật nhạc -->
+  <button id="btn-mute" onclick="toggleMute()" title="Tắt/Bật nhạc">🔊</button>
+
+<script src="game.js"></script>
+</body>
+</html>
