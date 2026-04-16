@@ -459,7 +459,7 @@ body{
 .predict-btn:disabled{opacity:.5;cursor:default}
 
 /* ===== CHOICES - nút tay vẽ ===== */
-#choices-box{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#choices-box{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 .choice-btn{
   background:#fff;
   border:3px solid #3d2b1f;
