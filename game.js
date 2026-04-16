@@ -406,20 +406,30 @@ function selectMode(mode) {
   _updateModeUI();
   document.getElementById('score-ai').textContent = '0';
   document.getElementById('score-player').textContent = '0';
+  
   showScreen('screen-howto');
-  startHowtoCountdown();
+  // Gọi lại hàm này để bắt đầu đếm ngược 6s tự động
+  startHowtoCountdown(); 
 }
 
 var _howtoTimer = null;
 
-var _howtoTimer = null;
-
 function startHowtoCountdown() {
-    // Xóa bỏ hoàn toàn setInterval và các biến liên quan đến thời gian
-    // Chỉ giữ lại lệnh chuyển màn hình ngay lập tức
-    
-    showScreen('screen-countdown'); 
-    startCountdown(); 
+  // Dọn dẹp nếu có timer cũ
+  if (_howtoTimer) clearInterval(_howtoTimer);
+  
+  var sec = 6;
+  var el = document.getElementById('howto-sec');
+  if (el) el.textContent = sec;
+
+  _howtoTimer = setInterval(function() {
+    sec--;
+    if (el) el.textContent = sec;
+    if (sec <= 0) {
+      clearInterval(_howtoTimer);
+      startCountdown(); // Hết 6s tự vào 3-2-1
+    }
+  }, 1000);
 }
 
 // function goToGender() {
@@ -445,9 +455,20 @@ function startHowtoCountdown() {
 // }
 
 function startCountdown() {
-  // Tắt BGM trong countdown
+  // 1. Dừng ngay lập tức timer 6s (nếu người dùng nhấn nút sớm)
+  if (_howtoTimer) {
+    clearInterval(_howtoTimer);
+    _howtoTimer = null;
+  }
+
+  // 2. PHẢI CÓ DÒNG NÀY: Hiện màn hình 3-2-1
+  showScreen('screen-countdown'); 
+  document.body.classList.add('on-countdown');
+
+  // 3. Tắt BGM để tập trung countdown
   var bgm = document.getElementById('bgm');
   if (bgm) bgm.pause();
+
   var num = 3;
   var numEl = document.getElementById('cd-number');
   var readyEl = document.getElementById('cd-ready');
@@ -455,26 +476,29 @@ function startCountdown() {
   function tick() {
     if (num > 0) {
       numEl.textContent = num;
+      // Hiệu ứng Pulse (giữ nguyên của bạn)
       numEl.style.animation = 'none';
       void numEl.offsetWidth;
       numEl.style.animation = 'cdPulse .8s ease-in-out';
+      
       playCountdownBeep(false);
       num--;
       setTimeout(tick, 1000);
     } else {
       numEl.textContent = '🚀';
-      readyEl.textContent = 'BẮT ĐẦU!';
-      numEl.style.animation = 'none';
-      void numEl.offsetWidth;
-      numEl.style.animation = 'cdPulse .6s ease-in-out';
-      playCountdownBeep(true);
+      if (readyEl) readyEl.textContent = 'BẮT ĐẦU!';
+      
+      // CHIẾN THUẬT GIẢM ĐƠ: Gọi dữ liệu sớm hơn một chút ở đây
+      nextRound(); 
+
       setTimeout(function(){
         showScreen('screen-game');
         document.body.classList.remove('on-countdown');
-        // Resume BGM
+        
         var bgm = document.getElementById('bgm');
         if (bgm && !_muted) bgm.play().catch(function(){});
-        nextRound();
+        
+        // Không gọi nextRound() ở đây nữa vì đã gọi ở trên rồi
       }, 700);
     }
   }
