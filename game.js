@@ -5,7 +5,7 @@
 var LEVEL_CONFIG = {
   easy:    { label:'🟢 Dễ',         time:40, aiDelay:[18000,24000],  eventRate:0,   bossDelay:[1500,2500]  },
   medium:  { label:'🟡 Trung Bình', time:30, aiDelay:[12000,16000],  eventRate:0.5, bossDelay:[1000,2000]  },
-  hard:    { label:'🔴 Khó',        time:20, aiDelay:[7000,10000],   eventRate:1.0, bossDelay:[600,1200]   },
+  hard:    { label:'🔴 Khó',        time:20, aiDelay:[9000,10000],   eventRate:0.8, bossDelay:[700,1500]   },
   predict: { label:'🧠 Đoán Ý AI',  time:30, aiDelay:[12000,16000],  eventRate:0,   bossDelay:[1000,2000]  },
   custom:  { label:'🧩 Tự Tạo',     time:35, aiDelay:[14000,18000],  eventRate:0,   bossDelay:[1000,2000]  }
 };
@@ -15,19 +15,19 @@ var OBJECTS = [
   { 
     name: "Laptop",
     features: {dungDienNang:true, coManHinh:true, coBanPhim:true, coTheGapLai:true, diDong:true, coPin:true, coLoa:true, coCamera:true, dungDeHoc:true, coNhieu:true, coNuoc:false, coLua:false, hinhDang:"chữ nhật", chatLieu:"điện tử", coVach:false},
-    hints: ["Thiết bị chạy bằng điện", "Có màn hình hiển thị", "Có bàn phím gắn liền để gõ chữ", "Có thể mang đi nhiều nơi (di động)","Có thể gấp lại"],
+    hints: ["Thiết bị chạy bằng điện", "Có bàn phím gắn liền để gõ chữ",  "Có màn hình hiển thị", "Có thể mang đi nhiều nơi (di động)","Có thể gấp lại"],
     choices: ["Máy tính để bàn", "Laptop", "Máy tính bảng", "Quyển sách"] 
   },
   { 
     name: "Điện thoại",
     features: {dungDienNang:true, coManHinh:true, coBanPhim:false, coTheGapLai:false, diDong:true, coPin:true, coLoa:true, coCamera:true, dungDeHoc:false, coNhieu:false, coNuoc:false, coLua:false, hinhDang:"chữ nhật", chatLieu:"điện tử", coVach:false},
-    hints: ["Sử dụng pin để hoạt động", "Màn hình cảm ứng nhỏ gọn", "Có khe cắm SIM để nghe gọi", "Dùng để giải trí và chụp ảnh", "Kích thước vừa vặn túi quần"],
+    hints: ["Có sử dụng điện", "Màn hình cảm ứng nhỏ gọn", "Có khe cắm SIM để nghe gọi", "Dùng để giải trí và chụp ảnh", "Kích thước vừa vặn túi quần"],
     choices: ["Máy nghe nhạc", "Điện thoại", "Máy ảnh", "Đồng hồ thông minh"] 
   },
   { 
     name: "Máy tính bảng",
     features: {dungDienNang:true, coManHinh:true, coBanPhim:false, coTheGapLai:false, diDong:true, coPin:true, coLoa:true, coCamera:true, dungDeHoc:true, coNhieu:false, coNuoc:false, coLua:false, hinhDang:"chữ nhật", chatLieu:"điện tử", coVach:false},
-    hints: ["Sử dụng pin để hoạt động", "To hơn điện thoại nhưng nhỏ hơn Laptop", "Màn hình cảm ứng nhỏ gọn", "Dùng ngón tay tương tác trực tiếp", "Hỗ trợ tốt cho việc học và vẽ"],
+    hints: ["Có sử dụng điện", "To hơn điện thoại nhưng nhỏ hơn Laptop", "Màn hình cảm ứng nhỏ gọn", "Dùng ngón tay tương tác trực tiếp", "Hỗ trợ tốt cho việc học và vẽ"],
     choices: ["Máy tính để bàn", "Máy tính bảng", "Bức tranh", "Tivi"] 
   },
   { 
@@ -45,13 +45,13 @@ var OBJECTS = [
   { 
     name: "Máy giặt",
     features: {dungDienNang:true, coManHinh:false, coBanPhim:false, coTheGapLai:false, diDong:false, coPin:false, coLoa:false, coCamera:false, dungDeHoc:false, coNhieu:false, coNuoc:true, coLua:false, hinhDang:"phức tạp", chatLieu:"kim loại", coVach:false},
-    hints: ["Là đồ gia dụng", "Kích thước to", "Có bộ phận lồng xoay bên trong", "Cần kết nối với nguồn nước", "Dùng để giặt sạch quần áo"],
-    choices: ["Máy rửa bát", "Máy giặt", "Máy sấy", "Bồn tắm"] 
+    hints: ["Có sử dụng điện", "Kích thước to", "Có bộ phận lồng xoay bên trong", "Cần kết nối với nguồn nước", "Dùng để giặt sạch quần áo"],
+    choices: ["Cây lau nhà", "Máy giặt", "Máy sấy", "Cây chổi"] 
   },
   { 
     name: "Nồi cơm điện",
     features: {dungDienNang:true, coManHinh:false, coBanPhim:false, coTheGapLai:false, diDong:false, coPin:false, coLoa:false, coCamera:false, dungDeHoc:false, coNhieu:false, coNuoc:true, coLua:true, hinhDang:"tròn", chatLieu:"kim loại", coVach:false},
-    hints: ["Ghim điện trực tiếp", "Hình dáng tròn hoặc bầu dục", "Dùng để nấu gạo thành cơm", "Dùng nhiệt độ cao để nấu chín", "Có nắp đậy và lòng nồi chống dính"],
+    hints: ["Có sử dụng điện", "Hình dáng tròn hoặc bầu dục", "Dùng để nấu gạo thành cơm", "Dùng nhiệt độ cao để nấu chín", "Có nắp đậy và lòng nồi chống dính"],
     choices: ["Gia vị", "Nồi cơm điện", "Bếp gas", "Tủ lạnh"] 
   },
   { 
@@ -257,10 +257,10 @@ var AI_DIALOGUES = {
     "Muốn đoán được AI thì phải học thêm nhiều lắm! 📚"
   ]
 };
-function getDialogue(type) {
-  var arr = AI_DIALOGUES[type];
-  return arr[Math.floor(Math.random() * arr.length)];
-}
+// function getDialogue(type) {
+//   var arr = AI_DIALOGUES[type];
+//   return arr[Math.floor(Math.random() * arr.length)];
+// }
 var _bubbleTimer = null;
 function showAIBubble(text, dur) {
   dur = dur || 2000;
