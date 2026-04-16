@@ -66,7 +66,7 @@ body{
     radial-gradient(circle at 10% 20%, rgba(255,220,100,.25) 0%, transparent 45%),
     radial-gradient(circle at 90% 80%, rgba(255,160,100,.2) 0%, transparent 45%),
     radial-gradient(circle at 50% 50%, rgba(255,255,255,.1) 0%, transparent 70%); */
-    background: url(./anhnen.png);
+    background: url(./anhnen.ipeg);
     background-size: contain;
   overflow:hidden;
   align-items:center;justify-content:center;
