@@ -48,7 +48,7 @@ body{
   position:relative;z-index:1;
 }
 .screen.active{display:flex}
-#screen-game{flex-direction:column;padding:10px;gap:6px;justify-content:flex-start;align-items:stretch}
+#screen-game{flex-direction:column;padding-top:150px;gap:6px;justify-content:flex-start;align-items:stretch}
 
 /* ===== VIỀN TAY VẼ (SVG filter) ===== */
 .doodle-box{
@@ -137,7 +137,7 @@ body{
 }
 .wt-line1{
   font-size:clamp(1.6rem,3.5vw,2.8rem);
-  color:#160c03;
+  color:#e67e22;
   text-shadow:2px 2px 0 rgba(230,126,34,.2);
   animation:titleWave 3s ease-in-out infinite;
 }
@@ -759,14 +759,34 @@ body.boss-mode #ai-panel{border-color:#e74c3c;box-shadow:4px 4px 0 #e74c3c}
 }
 
 /* ===== LOGO ===== */
-#game-logo{
-  position:absolute;
-  bottom:0;right:0;
-  width:3000px;height:auto;
-  opacity:.85;
-  z-index:100;
-  pointer-events:none;
-  transition:opacity .3s;
+#game-logo {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 1000;
+    
+    /* Thay đổi ở đây */          /* Cho phép chiều rộng tự giãn theo ảnh */
+    width: 150px;      /* Giới hạn chiều rộng tối thiểu */
+    height: auto;          /* Cho phép chiều cao tự giãn */
+    
+    background: #ffffff;
+    padding: 10px 20px;    /* Giảm padding một chút để tiết kiệm diện tích */
+    border-radius: 30px;   /* Bo tròn vừa đủ để tạo hình viên thuốc */
+    
+    border: 2px solid #A5D6A7; 
+    box-shadow: 0 4px 10px rgba(165, 214, 167, 0.3);
+    
+    display: flex;
+    flex-direction: column; /* Xếp ảnh và chữ theo hàng dọc nếu cần */
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+#game-logo img {
+    max-width: 100%;       /* Đảm bảo ảnh không tràn khỏi khung trắng */
+    height: auto;
+    display: block;
 }
 /* Ẩn khi countdown */
 body.on-countdown #game-logo{display:none}

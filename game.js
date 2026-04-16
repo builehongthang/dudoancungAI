@@ -10,142 +10,162 @@ var LEVEL_CONFIG = {
   custom:  { label:'🧩 Tự Tạo',     time:35, aiDelay:[14000,18000],  eventRate:0,   bossDelay:[1000,2000]  }
 };
 
-// ============================================================
-// DỮ LIỆU 20 ĐỒ VẬT
-// ============================================================
+// Dữ liệu 10 đồ vật với 5 gợi ý và 4 lựa chọn, kèm đặc trưng để AI suy luận
 var OBJECTS = [
-  { name:"Laptop",
-    features:{dungDienNang:true,coManHinh:true,coBanPhim:true,coTheGapLai:true,diDong:true,coPin:true,coLoa:true,coCamera:true,dungDeHoc:true,coNhieu:true,coNuoc:false,coLua:false,hinhDang:"chữ nhật",chatLieu:"điện tử",coVach:false},
-    hints:["Đồ điện tử sạc pin","Có màn hình và nhiều nút bấm","Mỏng nhẹ mang đi được","Dùng để lên mạng","Có bàn phím và màn hình gập lại được như cuốn sách"],
-    choices:["Ly nước","Laptop","Cục tẩy","Tivi"] },
-  { name:"Điện thoại",
-    features:{dungDienNang:true,coManHinh:true,coBanPhim:false,coTheGapLai:false,diDong:true,coPin:true,coLoa:true,coCamera:true,dungDeHoc:false,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"chữ nhật",chatLieu:"điện tử",coVach:false},
-    hints:["Đồ điện tử nhỏ gọn","Cần sạc pin mỗi ngày","Bỏ vừa túi quần, mang theo người","Có camera để chụp ảnh selfie","có thể gọi điện và nhắn tin "],
-    choices:["Hộp bút","Điện thoại","Cục tẩy","Thước"] },
- { name:"Máy tính bảng",
-   features:{dungDienNang:true,coManHinh:true,coBanPhim:false,coTheGapLai:false,diDong:true,coPin:true,coLoa:true,coCamera:true,dungDeHoc:true,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"chữ nhật",chatLieu:"điện tử",coVach:false},
-   hints:["Thiết bị có màn hình","Cảm ứng không bàn phím","Dùng pin mang theo","Xem học giải trí","Viết vẽ bằng bút"],
-   choices:["Gương","Máy tính bảng","Tủ đồ","Kéo"] },
-
- { name:"Tivi",
-   features:{dungDienNang:true,coManHinh:true,coBanPhim:false,coTheGapLai:false,diDong:false,coPin:false,coLoa:true,coCamera:false,dungDeHoc:false,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"chữ nhật",chatLieu:"điện tử",coVach:false},
-   hints:["Màn hình rất lớn","Có loa phát tiếng","Cắm điện sử dụng","Đặt cố định nhà","Xem cùng gia đình"],
-   choices:["Đồng hồ","Tivi","Chai nước","Máy phát nhạc"] },
-
- { name:"Đồng hồ đeo tay",
-   features:{dungDienNang:false,coManHinh:true,coBanPhim:false,coTheGapLai:false,diDong:true,coPin:true,coLoa:false,coCamera:false,dungDeHoc:false,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"tròn",chatLieu:"kim loại",coVach:false},
-   hints:["Đeo trên cổ tay","Xem giờ nhanh","Chạy bằng pin nhỏ","Kích thước rất nhỏ","Dùng mỗi ngày"],
-   choices:["Kẹo","Đồng hồ đeo tay","Tai Nghe","Bút máy"] },
-
- { name:"Sách",
-   features:{dungDienNang:false,coManHinh:false,coBanPhim:false,coTheGapLai:true,diDong:true,coPin:false,coLoa:false,coCamera:false,dungDeHoc:true,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"chữ nhật",chatLieu:"giấy",coVach:false},
-   hints:["Làm từ giấy","Có nhiều trang","Lật từng trang đọc","Dùng để học","Mang theo dễ"],
-   choices:["Gương","Sách","Thước kẻ","bảng đen"] },
-
- { name:"Cái bàn",
-   features:{dungDienNang:false,coManHinh:false,coBanPhim:false,coTheGapLai:false,diDong:false,coPin:false,coLoa:false,coCamera:false,dungDeHoc:true,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"chữ nhật",chatLieu:"gỗ/nhựa",coVach:false},
-   hints:["Có mặt phẳng rộng","Có bốn chân","Đặt cố định","Để đồ lên trên","Ngồi học làm việc"],
-   choices:["Cái cửa","Cái bàn","Ống hút","Kéo"] },
-
- { name:"Xe đạp",
-   features:{dungDienNang:false,coManHinh:false,coBanPhim:false,coTheGapLai:false,diDong:true,coPin:false,coLoa:false,coCamera:false,dungDeHoc:false,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"phức tạp",chatLieu:"kim loại",coVach:false},
-   hints:["Có hai bánh","Đạp chân để đi","Không cần xăng điện","Có tay lái","Dùng để di chuyển"],
-   choices:["Quạt điện","Xe đạp","Tủ đồ","Ô tô"] },
-
- { name:"Bóng đèn",
-   features:{dungDienNang:true,coManHinh:false,coBanPhim:false,coTheGapLai:false,diDong:false,coPin:false,coLoa:false,coCamera:false,dungDeHoc:false,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"tròn",chatLieu:"điện tử",coVach:false},
-   hints:["Phát ra ánh sáng","Cần điện hoạt động","Gắn trên trần","Hình tròn nhỏ","Chiếu sáng ban đêm"],
-   choices:["Kẹo","Bóng đèn","Tẩy","Hộp bút"] },
-
- { name:"Bàn phím máy tính",
-   features:{dungDienNang:true,coManHinh:false,coBanPhim:true,coTheGapLai:false,diDong:true,coPin:false,coLoa:false,coCamera:false,dungDeHoc:true,coNhieu:true,coNuoc:false,coLua:false,hinhDang:"chữ nhật",chatLieu:"điện tử",coVach:false},
-   hints:["Có nhiều phím","Dùng gõ chữ","Không có màn hình","Nối với máy tính","Đặt trước màn hình"],
-   choices:["Cái bàn","Bàn phím máy tính","Tủ sách","Cái rổ"] },
-
- { name:"Tủ lạnh",
-   features:{dungDienNang:true,coManHinh:false,coBanPhim:false,coTheGapLai:false,diDong:false,coPin:false,coLoa:false,coCamera:false,dungDeHoc:false,coNhieu:false,coNuoc:true,coLua:false,hinhDang:"chữ nhật",chatLieu:"kim loại",coVach:false},
-   hints:["Bên trong rất lạnh","Giữ thức ăn tươi","Có ngăn làm đá","Cắm điện liên tục","Đặt trong bếp"],
-   choices:["Máy giặt","Tủ lạnh","Cái nón","Com - pa"] },
-
- { name:"Máy giặt",
-   features:{dungDienNang:true,coManHinh:false,coBanPhim:false,coTheGapLai:false,diDong:false,coPin:false,coLoa:false,coCamera:false,dungDeHoc:false,coNhieu:false,coNuoc:true,coLua:false,hinhDang:"phức tạp",chatLieu:"kim loại",coVach:false},
-   hints:["Giặt quần áo","Cần nước điện","Có lồng quay","Kêu khi chạy","Đặt cố định"],
-   choices:["Cái bát","Máy giặt","Cái Tô","Cây chổi"] },
-
- { name:"Nồi cơm điện",
-   features:{dungDienNang:true,coManHinh:false,coBanPhim:false,coTheGapLai:false,diDong:false,coPin:false,coLoa:false,coCamera:false,dungDeHoc:false,coNhieu:false,coNuoc:true,coLua:true,hinhDang:"tròn",chatLieu:"kim loại",coVach:false},
-   hints:["Nấu cơm bằng điện","Có nắp đậy","Tỏa hơi nóng","Tự giữ ấm","Dùng trong bếp"],
-   choices:["Cái thước","Nồi cơm điện","Cái kéo","Bình hoa"] },
-
- { name:"Cây bút",
-   features:{dungDienNang:false,coManHinh:false,coBanPhim:false,coTheGapLai:false,diDong:true,coPin:false,coLoa:false,coCamera:false,dungDeHoc:true,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"dài",chatLieu:"gỗ/nhựa",coVach:false},
-   hints:["Dùng để viết","Có mực bên trong","Nhỏ gọn mang theo","Không cần điện","Cầm bằng tay"],
-   choices:["Thước kẻ","Cây bút","Bàn phím máy tính","Cục tẩy"] },
-
- { name:"Thước kẻ",
-   features:{dungDienNang:false,coManHinh:false,coBanPhim:false,coTheGapLai:false,diDong:true,coPin:false,coLoa:false,coCamera:false,dungDeHoc:true,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"dài",chatLieu:"gỗ/nhựa",coVach:true},
-   hints:["Có vạch đo","Dùng kẻ thẳng","Dài và dẹt","Đo chiều dài","Để trong hộp bút"],
-   choices:["Cây bút","Thước kẻ","Cục tẩy","Compa"] },
-
- { name:"Cái ghế",
-   features:{dungDienNang:false,coManHinh:false,coBanPhim:false,coTheGapLai:false,diDong:false,coPin:false,coLoa:false,coCamera:false,dungDeHoc:false,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"phức tạp",chatLieu:"gỗ/nhựa",coVach:false},
-   hints:["Dùng để ngồi","Có tựa lưng","Có bốn chân","Đặt gần bàn","Làm bằng gỗ nhựa"],
-   choices:["Cục tẩy","Cái ghế","Kẹo","Móc khóa"] },
-
- { name:"Đèn pin",
-   features:{dungDienNang:true,coManHinh:false,coBanPhim:false,coTheGapLai:false,diDong:true,coPin:true,coLoa:false,coCamera:false,dungDeHoc:false,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"dài",chatLieu:"kim loại",coVach:false},
-   hints:["Cầm tay chiếu sáng","Chạy bằng pin","Chiếu một hướng","Dùng khi tối","Mang theo dễ"],
-   choices:["Cái bàn","Đèn pin","Cục tẩy","Com - pa"] },
-
- { name:"Cái mũ",
-   features:{dungDienNang:false,coManHinh:false,coBanPhim:false,coTheGapLai:true,diDong:true,coPin:false,coLoa:false,coCamera:false,dungDeHoc:false,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"tròn",chatLieu:"vải",coVach:false},
-   hints:["Đội lên đầu","Che nắng mưa","Làm bằng vải","Nhẹ dễ mang","Có nhiều kiểu"],
-   choices:["Khăn quàng cổ","Cái mũ","Kính mắt","Vòng tay"] },
-
- { name:"Máy ảnh",
-   features:{dungDienNang:true,coManHinh:true,coBanPhim:false,coTheGapLai:false,diDong:true,coPin:true,coLoa:false,coCamera:true,dungDeHoc:false,coNhieu:false,coNuoc:false,coLua:false,hinhDang:"chữ nhật",chatLieu:"điện tử",coVach:false},
-   hints:["Dùng để chụp ảnh","Có ống kính","Có màn hình nhỏ","Mang theo được","Lưu giữ kỷ niệm"],
-   choices:["Cái bàn","Máy ảnh","Ống nhòm","Kính lúp"] },
-
- { name:"Lò vi sóng",
-   features:{dungDienNang:true,coManHinh:false,coBanPhim:false,coTheGapLai:false,diDong:false,coPin:false,coLoa:false,coCamera:false,dungDeHoc:false,coNhieu:false,coNuoc:false,coLua:true,hinhDang:"chữ nhật",chatLieu:"kim loại",coVach:false},
-   hints:["Hâm nóng thức ăn","Cắm điện sử dụng","Có cửa kính","Bấm nút hẹn giờ","Dùng trong bếp"],
-   choices:["Cái chổi","Lò vi sóng","Thước kẻ","Cái ghế"] }
+  { 
+    name: "Laptop",
+    features: {dungDienNang:true, coManHinh:true, coBanPhim:true, coTheGapLai:true, diDong:true, coPin:true, coLoa:true, coCamera:true, dungDeHoc:true, coNhieu:true, coNuoc:false, coLua:false, hinhDang:"chữ nhật", chatLieu:"điện tử", coVach:false},
+    hints: ["Thiết bị chạy bằng điện", "Có màn hình hiển thị", "Có bàn phím gắn liền để gõ chữ", "Có thể mang đi nhiều nơi (di động)","Có thể gấp lại"],
+    choices: ["Máy tính để bàn", "Laptop", "Máy tính bảng", "Quyển sách"] 
+  },
+  { 
+    name: "Điện thoại",
+    features: {dungDienNang:true, coManHinh:true, coBanPhim:false, coTheGapLai:false, diDong:true, coPin:true, coLoa:true, coCamera:true, dungDeHoc:false, coNhieu:false, coNuoc:false, coLua:false, hinhDang:"chữ nhật", chatLieu:"điện tử", coVach:false},
+    hints: ["Sử dụng pin để hoạt động", "Màn hình cảm ứng nhỏ gọn", "Có khe cắm SIM để nghe gọi", "Dùng để giải trí và chụp ảnh", "Kích thước vừa vặn túi quần"],
+    choices: ["Máy nghe nhạc", "Điện thoại", "Máy ảnh", "Đồng hồ thông minh"] 
+  },
+  { 
+    name: "Máy tính bảng",
+    features: {dungDienNang:true, coManHinh:true, coBanPhim:false, coTheGapLai:false, diDong:true, coPin:true, coLoa:true, coCamera:true, dungDeHoc:true, coNhieu:false, coNuoc:false, coLua:false, hinhDang:"chữ nhật", chatLieu:"điện tử", coVach:false},
+    hints: ["Sử dụng pin để hoạt động", "To hơn điện thoại nhưng nhỏ hơn Laptop", "Màn hình cảm ứng nhỏ gọn", "Dùng ngón tay tương tác trực tiếp", "Hỗ trợ tốt cho việc học và vẽ"],
+    choices: ["Máy tính để bàn", "Máy tính bảng", "Bức tranh", "Tivi"] 
+  },
+  { 
+    name: "Tivi",
+    features: {dungDienNang:true, coManHinh:true, coBanPhim:false, coTheGapLai:false, diDong:false, coPin:false, coLoa:true, coCamera:false, dungDeHoc:false, coNhieu:false, coNuoc:false, coLua:false, hinhDang:"chữ nhật", chatLieu:"điện tử", coVach:false},
+    hints: ["Ghim điện trực tiếp", "Màn hình kích thước lớn", "Thường đặt cố định", "Phát ra âm thanh và hình ảnh", "Phải dùng điều khiển từ xa (Remote)"],
+    choices: ["Lò vi sóng", "Tivi", "Máy chiếu", "Máy ảnh"] 
+  },
+  { 
+    name: "Tủ lạnh",
+    features: {dungDienNang:true, coManHinh:false, coBanPhim:false, coTheGapLai:false, diDong:false, coPin:false, coLoa:false, coCamera:false, dungDeHoc:false, coNhieu:false, coNuoc:true, coLua:false, hinhDang:"chữ nhật", chatLieu:"kim loại", coVach:false},
+    hints: ["Thường đặt cố định", "Tỏa ra hơi lạnh", "Bảo quản thức ăn", "Ghim điện trực tiếp", "Tạo ra đá lạnh"],
+    choices: ["Máy giặt", "Tủ lạnh", "Máy lạnh", "Lò vi sóng"] 
+  },
+  { 
+    name: "Máy giặt",
+    features: {dungDienNang:true, coManHinh:false, coBanPhim:false, coTheGapLai:false, diDong:false, coPin:false, coLoa:false, coCamera:false, dungDeHoc:false, coNhieu:false, coNuoc:true, coLua:false, hinhDang:"phức tạp", chatLieu:"kim loại", coVach:false},
+    hints: ["Là đồ gia dụng", "Kích thước to", "Có bộ phận lồng xoay bên trong", "Cần kết nối với nguồn nước", "Dùng để giặt sạch quần áo"],
+    choices: ["Máy rửa bát", "Máy giặt", "Máy sấy", "Bồn tắm"] 
+  },
+  { 
+    name: "Nồi cơm điện",
+    features: {dungDienNang:true, coManHinh:false, coBanPhim:false, coTheGapLai:false, diDong:false, coPin:false, coLoa:false, coCamera:false, dungDeHoc:false, coNhieu:false, coNuoc:true, coLua:true, hinhDang:"tròn", chatLieu:"kim loại", coVach:false},
+    hints: ["Ghim điện trực tiếp", "Hình dáng tròn hoặc bầu dục", "Dùng để nấu gạo thành cơm", "Dùng nhiệt độ cao để nấu chín", "Có nắp đậy và lòng nồi chống dính"],
+    choices: ["Gia vị", "Nồi cơm điện", "Bếp gas", "Tủ lạnh"] 
+  },
+  { 
+    name: "Thước kẻ",
+    features: {dungDienNang:false, coManHinh:false, coBanPhim:false, coTheGapLai:false, diDong:true, coPin:false, coLoa:false, coCamera:false, dungDeHoc:true, coNhieu:false, coNuoc:false, coLua:false, hinhDang:"dài", chatLieu:"gỗ/nhựa", coVach:true},
+    hints: ["Không sử dụng điện", "Thường làm từ nhựa", "Thân hình dài và dẹp", "Có các vạch chia khoảng cách", "Dùng để đo độ dài và kẻ đường thẳng"],
+    choices: ["Cây bút", "Thước kẻ", "Dây thừng", "Thanh gỗ"] 
+  },
+  { 
+    name: "Sách",
+    features: {dungDienNang:false, coManHinh:false, coBanPhim:false, coTheGapLai:true, diDong:true, coPin:false, coLoa:false, coCamera:false, dungDeHoc:true, coNhieu:false, coNuoc:false, coLua:false, hinhDang:"chữ nhật", chatLieu:"giấy", coVach:false},
+    hints: ["Có thể mở ra và đóng lại", "Làm từ giấy", "Chứa nhiều kiến thức", "Không sử dụng điện", "Dùng để đọc và tìm hiểu kiến thức"],
+    choices: ["Bức thư", "Sách", "Lò vi sóng", "Laptop"] 
+  },
+  { 
+    name: "Đồng hồ đeo tay",
+    features: {dungDienNang:false, coManHinh:true, coBanPhim:false, coTheGapLai:false, diDong:true, coPin:true, coLoa:false, coCamera:false, dungDeHoc:false, coNhieu:false, coNuoc:false, coLua:false, hinhDang:"tròn", chatLieu:"kim loại", coVach:false},
+    hints: ["Kích thước rất nhỏ", "Có thể xem được thời gian", "Có mặt số tròn hoặc điện tử", "Có dây đeo để gắn vào cơ thể", "Luôn nằm trên cổ tay"],
+    choices: ["La bàn", "Đồng hồ đeo tay", "Máy đo nhịp tim", "Vòng tay"] 
+  }
 ];
 
 // ============================================================
 // DECISION TREE
 // ============================================================
+// var DECISION_TREE = {
+//   feature:"dungDienNang",
+//   yes:{feature:"coManHinh",
+//     yes:{feature:"diDong",
+//       yes:{feature:"coTheGapLai",
+//         yes:{result:"Laptop"},
+//         no:{feature:"coCamera",
+//           yes:{feature:"coPin",
+//             yes:{feature:"coBanPhim",yes:{result:"Laptop"},
+//               no:{feature:"coLoa",
+//                 yes:{feature:"dungDeHoc",yes:{result:"Máy tính bảng"},no:{result:"Điện thoại"}},
+//                 no:{result:"Máy ảnh"}}},
+//             no:{result:"Máy ảnh"}},
+//           no:{result:"Tivi"}}},
+//       no:{result:"Tivi"}},
+//     no:{feature:"coNuoc",
+//       yes:{feature:"coLua",yes:{result:"Nồi cơm điện"},
+//         no:{feature:"hinhDang","phức tạp":{result:"Máy giặt"},default:{result:"Tủ lạnh"}}},
+//       no:{feature:"coBanPhim",yes:{result:"Bàn phím máy tính"},
+//         no:{feature:"coLua",yes:{result:"Lò vi sóng"},
+//           no:{feature:"diDong",yes:{result:"Đèn pin"},no:{result:"Bóng đèn"}}}}}},
+//   no:{feature:"chatLieu",
+//     "giấy":{result:"Sách"},"vải":{result:"Cái mũ"},
+//     default:{feature:"coManHinh",yes:{result:"Đồng hồ đeo tay"},
+//       no:{feature:"dungDeHoc",
+//         yes:{feature:"diDong",
+//           yes:{feature:"coVach",yes:{result:"Thước kẻ"},no:{result:"Cây bút"}},
+//           no:{result:"Cái bàn"}},
+//         no:{feature:"diDong",yes:{result:"Xe đạp"},
+//           no:{feature:"hinhDang","phức tạp":{result:"Cái ghế"},default:{result:"Cái bàn"}}}}}}
+// };
+
+// ============================================================
+// DECISION TREE
+// ============================================================
 var DECISION_TREE = {
-  feature:"dungDienNang",
-  yes:{feature:"coManHinh",
-    yes:{feature:"diDong",
-      yes:{feature:"coTheGapLai",
-        yes:{result:"Laptop"},
-        no:{feature:"coCamera",
-          yes:{feature:"coPin",
-            yes:{feature:"coBanPhim",yes:{result:"Laptop"},
-              no:{feature:"coLoa",
-                yes:{feature:"dungDeHoc",yes:{result:"Máy tính bảng"},no:{result:"Điện thoại"}},
-                no:{result:"Máy ảnh"}}},
-            no:{result:"Máy ảnh"}},
-          no:{result:"Tivi"}}},
-      no:{result:"Tivi"}},
-    no:{feature:"coNuoc",
-      yes:{feature:"coLua",yes:{result:"Nồi cơm điện"},
-        no:{feature:"hinhDang","phức tạp":{result:"Máy giặt"},default:{result:"Tủ lạnh"}}},
-      no:{feature:"coBanPhim",yes:{result:"Bàn phím máy tính"},
-        no:{feature:"coLua",yes:{result:"Lò vi sóng"},
-          no:{feature:"diDong",yes:{result:"Đèn pin"},no:{result:"Bóng đèn"}}}}}},
-  no:{feature:"chatLieu",
-    "giấy":{result:"Sách"},"vải":{result:"Cái mũ"},
-    default:{feature:"coManHinh",yes:{result:"Đồng hồ đeo tay"},
-      no:{feature:"dungDeHoc",
-        yes:{feature:"diDong",
-          yes:{feature:"coVach",yes:{result:"Thước kẻ"},no:{result:"Cây bút"}},
-          no:{result:"Cái bàn"}},
-        no:{feature:"diDong",yes:{result:"Xe đạp"},
-          no:{feature:"hinhDang","phức tạp":{result:"Cái ghế"},default:{result:"Cái bàn"}}}}}}
+  feature: "dungDienNang",
+  yes: {
+    feature: "coManHinh",
+    yes: {
+      feature: "diDong",
+      yes: {
+        feature: "coBanPhim",
+        yes: { result: "Laptop" },
+        no: {
+          feature: "dungDeHoc",
+          yes: { result: "Máy tính bảng" },
+          no: { 
+            feature: "coPin", 
+            yes: { result: "Điện thoại" }, 
+            no: { result: "Đồng hồ đeo tay" } 
+          }
+        }
+      },
+      no: { result: "Tivi" }
+    },
+    no: {
+      feature: "coNuoc",
+      yes: {
+        feature: "coLua",
+        yes: { result: "Nồi cơm điện" },
+        no: {
+          feature: "hinhDang",
+          "phức tạp": { result: "Máy giặt" },
+          default: { result: "Tủ lạnh" }
+        }
+      },
+      // Trường hợp dự phòng nếu AI rơi vào nhánh không màn hình/không nước
+      no: { result: "Nồi cơm điện" } 
+    }
+  },
+  no: {
+    feature: "chatLieu",
+    "giấy": { result: "Sách" },
+    "kim loại": { result: "Đồng hồ đeo tay" }, // Nhánh cho đồng hồ cơ/pin không màn hình
+    default: {
+      feature: "dungDeHoc",
+      yes: {
+        feature: "coVach",
+        yes: { result: "Thước kẻ" },
+        no: { result: "Cây bút" } // Lưu ý: Bạn có thể thêm Cây bút vào lại hoặc đổi thành món khác
+      },
+      no: {
+        feature: "coManHinh",
+        yes: { result: "Đồng hồ đeo tay" },
+        no: { result: "Sách" }
+      }
+    }
+  }
 };
 
 function runDecisionTree(features) {
@@ -391,42 +411,38 @@ function selectMode(mode) {
 }
 
 var _howtoTimer = null;
+
+var _howtoTimer = null;
+
 function startHowtoCountdown() {
-  clearInterval(_howtoTimer);
-  var sec = 6;
-  var el = document.getElementById('howto-sec');
-  if (el) el.textContent = sec;
-  _howtoTimer = setInterval(function(){
-    sec--;
-    if (el) el.textContent = sec;
-    if (sec <= 0) {
-      clearInterval(_howtoTimer);
-      goToGender();
-    }
-  }, 1000);
+    // Xóa bỏ hoàn toàn setInterval và các biến liên quan đến thời gian
+    // Chỉ giữ lại lệnh chuyển màn hình ngay lập tức
+    
+    showScreen('screen-countdown'); 
+    startCountdown(); 
 }
 
-function goToGender() {
-  clearInterval(_howtoTimer);
-  showScreen('screen-gender');
-}
+// function goToGender() {
+//   clearInterval(_howtoTimer);
+//   showScreen('screen-gender');
+// }
 
-function selectGender(gender) {
-  state.playerGender = gender;
-  var avatarEl = document.getElementById('player-avatar');
-  avatarEl.innerHTML = '<img src="gioi_tinh_player/' + gender + '.jpg" alt="' + gender + '"/>';
+// function selectGender(gender) {
+//   state.playerGender = gender;
+//   var avatarEl = document.getElementById('player-avatar');
+//   avatarEl.innerHTML = '<img src="gioi_tinh_player/' + gender + '.jpg" alt="' + gender + '"/>';
 
-  // Cập nhật ảnh player trong countdown
-  var cdPlayer = document.getElementById('cd-player-img');
-  if (cdPlayer) cdPlayer.src = 'gioi_tinh_player/' + gender + '.jpg';
+//   // Cập nhật ảnh player trong countdown
+//   var cdPlayer = document.getElementById('cd-player-img');
+//   if (cdPlayer) cdPlayer.src = 'gioi_tinh_player/' + gender + '.jpg';
 
-  showScreen('screen-countdown');
-  document.body.classList.add('on-countdown');
-  // Tạm dừng BGM trong countdown
-  var bgm = document.getElementById('bgm');
-  if (bgm) bgm.pause();
-  startCountdown();
-}
+//   showScreen('screen-countdown');
+//   document.body.classList.add('on-countdown');
+//   // Tạm dừng BGM trong countdown
+//   var bgm = document.getElementById('bgm');
+//   if (bgm) bgm.pause();
+//   startCountdown();
+// }
 
 function startCountdown() {
   // Tắt BGM trong countdown
