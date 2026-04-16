@@ -257,10 +257,10 @@ var AI_DIALOGUES = {
     "Muốn đoán được AI thì phải học thêm nhiều lắm! 📚"
   ]
 };
-// function getDialogue(type) {
-//   var arr = AI_DIALOGUES[type];
-//   return arr[Math.floor(Math.random() * arr.length)];
-// }
+function getDialogue(type) {
+  var arr = AI_DIALOGUES[type];
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 var _bubbleTimer = null;
 function showAIBubble(text, dur) {
   dur = dur || 2000;
@@ -1407,20 +1407,20 @@ function startCustomGame() {
 // ============================================================
 // WELCOME ROBOT SLIDESHOW
 // ============================================================
-var WELCOME_SLIDES = [
-  'cam_xuc_robot/vui_vẻ_01-removebg-preview.png',
-  'cam_xuc_robot/hạnh_phúc-removebg-preview.png',
-  'cam_xuc_robot/đang_suy_nghĩ-removebg-preview.png',
-  'cam_xuc_robot/thắc_mắc-removebg-preview.png',
-  'cam_xuc_robot/yêu-removebg-preview.png',
-  'cam_xuc_robot/tức_giận-removebg-preview.png',
-  'cam_xuc_robot/buồn-removebg-preview.png',
-  'cam_xuc_robot/gặp_khó_khăn-removebg-preview.png',
-  'cam_xuc_robot/mệt-removebg-preview.png',
-  'cam_xuc_robot/có_nguy_hiểm-removebg-preview.png',
-  'cam_xuc_robot/gặp_sự_cố-removebg-preview.png',
-  'cam_xuc_robot/vui_vẻ-removebg-preview.png'
-];
+// var WELCOME_SLIDES = [
+//   'cam_xuc_robot/vui_vẻ_01-removebg-preview.png',
+//   'cam_xuc_robot/hạnh_phúc-removebg-preview.png',
+//   'cam_xuc_robot/đang_suy_nghĩ-removebg-preview.png',
+//   'cam_xuc_robot/thắc_mắc-removebg-preview.png',
+//   'cam_xuc_robot/yêu-removebg-preview.png',
+//   'cam_xuc_robot/tức_giận-removebg-preview.png',
+//   'cam_xuc_robot/buồn-removebg-preview.png',
+//   'cam_xuc_robot/gặp_khó_khăn-removebg-preview.png',
+//   'cam_xuc_robot/mệt-removebg-preview.png',
+//   'cam_xuc_robot/có_nguy_hiểm-removebg-preview.png',
+//   'cam_xuc_robot/gặp_sự_cố-removebg-preview.png',
+//   'cam_xuc_robot/vui_vẻ-removebg-preview.png'
+// ];
 
 var _slideIdx = 0;
 var _slideTimer = null;
