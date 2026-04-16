@@ -310,7 +310,7 @@ body{
 /* ===== TĂNG FONT GẤP ĐÔI TOÀN BỘ GAME ===== */
 #screen-game, #screen-game *{font-size-adjust:none}
 #hints-list li{font-size:1.9rem!important}
-.choice-btn{font-size:2rem!important;padding:16px!important}
+.choice-btn{font-size:2rem!important;padding:16px!important;}
 .score-box .label{font-size:1.5rem!important}
 .score-box .score{font-size:2.6rem!important}
 #round-info{font-size:1.5rem!important}
@@ -459,7 +459,7 @@ body{
 .predict-btn:disabled{opacity:.5;cursor:default}
 
 /* ===== CHOICES - nút tay vẽ ===== */
-#choices-box{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+#choices-box{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 .choice-btn{
   background:#fff;
   border:3px solid #3d2b1f;
