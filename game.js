@@ -414,23 +414,23 @@ function selectMode(mode) {
 
 var _howtoTimer = null;
 
-function startHowtoCountdown() {
-  // Dọn dẹp nếu có timer cũ
-  if (_howtoTimer) clearInterval(_howtoTimer);
+// function startHowtoCountdown() {
+//   // Dọn dẹp nếu có timer cũ
+//   if (_howtoTimer) clearInterval(_howtoTimer);
   
-  var sec = 6;
-  var el = document.getElementById('howto-sec');
-  if (el) el.textContent = sec;
+//   var sec = 6;
+//   var el = document.getElementById('howto-sec');
+//   if (el) el.textContent = sec;
 
-  _howtoTimer = setInterval(function() {
-    sec--;
-    if (el) el.textContent = sec;
-    if (sec <= 0) {
-      clearInterval(_howtoTimer);
-      startCountdown(); // Hết 6s tự vào 3-2-1
-    }
-  }, 1000);
-}
+//   _howtoTimer = setInterval(function() {
+//     sec--;
+//     if (el) el.textContent = sec;
+//     if (sec <= 0) {
+//       clearInterval(_howtoTimer);
+//       startCountdown(); // Hết 6s tự vào 3-2-1
+//     }
+//   }, 1000);
+// }
 
 // function goToGender() {
 //   clearInterval(_howtoTimer);

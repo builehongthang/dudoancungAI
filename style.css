@@ -235,15 +235,15 @@ body{
   font-family:'Patrick Hand',cursive;margin-bottom:clamp(14px,2vw,22px);
 }
 .intro-footer{
-  font-size:clamp(.85rem,1.3vw,1rem);color:#7d5a3c;
+  font-size:clamp(.85rem,1.3vw,1rem);color:#fc0000;
   font-family:'Patrick Hand',cursive;margin-top:clamp(10px,1.5vw,16px);
-  animation:titlePop 2s ease-in-out infinite;
+  animation:titlePop 0.5s ease-in-out infinite;
 }
 
-.mode-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(10px,2vw,16px)}
+.mode-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(10px,2vw,25px)}
 .mode-btn{
-  background:#fff;border:3px solid #3d2b1f;border-radius:16px;
-  box-shadow:4px 4px 0 #3d2b1f;
+  background:#f1ecec;border:3px solid #3d2b1f;border-radius:16px;
+  box-shadow:4px 5px 0 #a89090;
   padding:clamp(12px,2vw,18px) clamp(8px,1.5vw,14px);
   cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;
   transition:transform .15s,box-shadow .15s;font-family:'Patrick Hand',cursive;
@@ -262,8 +262,8 @@ body{
 .hard-btn:hover{box-shadow:6px 6px 0 #e74c3c}
 .hard-btn .mode-robot-img{animation-delay:.8s}
 .predict-btn{background:#e8f0fe;border-color:#3498db}
-.mode-name{font-size:clamp(1rem,2vw,1.3rem);font-weight:700;color:#3d2b1f;font-family:'Nunito',sans-serif}
-.mode-desc{font-size:clamp(.72rem,1.2vw,.88rem);color:#7d5a3c}
+.mode-name{font-size:clamp(1rem,10vw,2rem);font-weight:700;color:#df7732;font-family:'Nunito',sans-serif}
+.mode-desc{font-size:clamp(.72rem,1.2vw,2rem);color:#000000}
 .mode-levels{font-size:.88rem;color:#e67e22;font-weight:700;background:#fff3cd;padding:3px 10px;border-radius:20px;border:1.5px solid #e67e22;margin-top:2px}
 .mode-grid .predict-btn{grid-column:auto}
 
@@ -378,18 +378,18 @@ body{
 
 /* HINTS BOX - giấy vẽ */
 #hints-box{
-  background:#50f766;
-  border:3px solid #02ff0f;border-radius:16px;
-  box-shadow:4px 4px 0 #06e95d;
+  background:#ffc400;
+  border:3px solid #ecdf68;border-radius:16px;
+  box-shadow:4px 4px 0 #f0dc2c;
   padding:12px 16px;
   position:relative;
   margin: 40px;
 }
 #hints-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-#hints-header h3{color:#0eda0e;font-size:1rem;font-family:'Nunito',sans-serif;font-weight:900}
+#hints-header h3{color:#ffffff;font-size:1rem;font-family:'Nunito',sans-serif;font-weight:900}
 #hint-count-badge{
-  font-size:.72rem;background:#abf395;color:#19d166;
-  padding:2px 10px;border-radius:20px;border:2px solid #0dc23a;
+  font-size:.72rem;background:#020800;color:#ffffff;
+  padding:2px 10px;border-radius:20px;border:2px solid #ffffff;
   font-weight:700;min-width:48px;text-align:center;
   font-family:'Patrick Hand',cursive;
 }
@@ -400,7 +400,7 @@ body{
 }
 #hint-prev, #hint-next{
   background:#fff3cd;border:2.5px solid #e67e22;border-radius:50%;
-  width:38px;height:38px;font-size:1.1rem;cursor:pointer;
+  width:20px;height:20px;font-size:1.1rem;cursor:pointer;
   box-shadow:2px 2px 0 #e67e22;flex-shrink:0;
   transition:all .15s;font-weight:700;color:#e67e22;
   display:flex;align-items:center;justify-content:center;
