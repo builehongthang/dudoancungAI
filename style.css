@@ -767,6 +767,7 @@ body.boss-mode #ai-panel{border-color:#e74c3c;box-shadow:4px 4px 0 #e74c3c}
     top: 15px;
     right: 20px;
     z-index: 1000;
+    margin-bottom: 20px;
     
     /* Thay đổi ở đây */          /* Cho phép chiều rộng tự giãn theo ảnh */
     width: 150px;      /* Giới hạn chiều rộng tối thiểu */
