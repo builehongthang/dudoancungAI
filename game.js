@@ -5,7 +5,7 @@
 var LEVEL_CONFIG = {
   easy:    { label:'🟢 Dễ',         time:40, aiDelay:[18000,24000],  eventRate:0,   bossDelay:[1500,2500]  },
   medium:  { label:'🟡 Trung Bình', time:30, aiDelay:[12000,16000],  eventRate:0.5, bossDelay:[1000,2000]  },
-  hard:    { label:'🔴 Khó',        time:20, aiDelay:[9000,10000],   eventRate:0.8, bossDelay:[700,1500]   },
+  hard:    { label:'🔴 Khó',        time:20, aiDelay:[10000,12000],   eventRate:0.7, bossDelay:[900,1500]   },
   predict: { label:'🧠 Đoán Ý AI',  time:30, aiDelay:[12000,16000],  eventRate:0,   bossDelay:[1000,2000]  },
   custom:  { label:'🧩 Tự Tạo',     time:35, aiDelay:[14000,18000],  eventRate:0,   bossDelay:[1000,2000]  }
 };
@@ -63,7 +63,7 @@ var OBJECTS = [
   { 
     name: "Sách",
     features: {dungDienNang:false, coManHinh:false, coBanPhim:false, coTheGapLai:true, diDong:true, coPin:false, coLoa:false, coCamera:false, dungDeHoc:true, coNhieu:false, coNuoc:false, coLua:false, hinhDang:"chữ nhật", chatLieu:"giấy", coVach:false},
-    hints: ["Có thể mở ra và đóng lại", "Làm từ giấy", "Chứa nhiều kiến thức", "Không sử dụng điện", "Dùng để đọc và tìm hiểu kiến thức"],
+    hints: ["Làm từ giấy", "Chứa nhiều kiến thức","Có thể mở ra và đóng lại", "Không sử dụng điện", "Dùng để đọc và tìm hiểu kiến thức"],
     choices: ["Bức thư", "Sách", "Lò vi sóng", "Laptop"] 
   },
   { 
@@ -504,30 +504,39 @@ function startCountdown() {
   }
   tick();
 }
+// function replayGame() {
+//     // Chỉ làm 2 việc: Dừng logic game và chuyển màn hình
+//     gameActive = false; 
+    
+//     document.getElementById('result-screen').classList.add('hidden');
+//     document.getElementById('play-screen').classList.add('hidden');
+//     document.getElementById('screen-welcome').classList.remove('hidden');
+    
+//     // Xóa các món đồ đang bay dở để màn hình chính sạch sẽ
+//     document.querySelectorAll('.item').forEach(el => el.remove());
+// }
 
-function replayGame() { selectMode(state.mode); }
-
-function _updateModeUI() {
-  var cfg = state.cfg;
-  document.getElementById('mode-badge').textContent = cfg.label;
-  _updatePhaseUI();
-  document.body.classList.remove('boss-mode');
-}
-
-function _updatePhaseUI() {
-  var pb = document.getElementById('phase-badge');
-  var isBoss = state.phase === 'boss';
-  pb.textContent = isBoss ? '🔥 BOSS' : ' Vòng thường';
-  pb.className = isBoss ? 'phase-boss' : 'phase-normal';
-  document.getElementById('ai-label').textContent = isBoss ? '😈 Boss AI' : '🤖 AI';
-  document.getElementById('ai-panel-label').textContent = isBoss ? 'Boss AI' : 'AI';
-  document.getElementById('round-total').textContent = isBoss ? state.bossRounds : state.normalRounds;
-  if (isBoss) {
-    document.body.classList.add('boss-mode');
-  } else {
+  function _updateModeUI() {
+    var cfg = state.cfg;
+    document.getElementById('mode-badge').textContent = cfg.label;
+    _updatePhaseUI();
     document.body.classList.remove('boss-mode');
   }
-}
+
+  function _updatePhaseUI() {
+    var pb = document.getElementById('phase-badge');
+    var isBoss = state.phase === 'boss';
+    pb.textContent = isBoss ? '🔥 BOSS' : ' Vòng thường';
+    pb.className = isBoss ? 'phase-boss' : 'phase-normal';
+    document.getElementById('ai-label').textContent = isBoss ? '😈 Boss AI' : '🤖 AI';
+    document.getElementById('ai-panel-label').textContent = isBoss ? 'Boss AI' : 'AI';
+    document.getElementById('round-total').textContent = isBoss ? state.bossRounds : state.normalRounds;
+    if (isBoss) {
+      document.body.classList.add('boss-mode');
+    } else {
+      document.body.classList.remove('boss-mode');
+    }
+  }
 
 // ============================================================
 // BOSS TRANSITION
