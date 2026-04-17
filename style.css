@@ -531,7 +531,7 @@ body{
 .howto-header{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px}
 .howto-emoji{font-size:1.8rem;animation:cdFloat 2s ease-in-out infinite}
 .howto-emoji:last-child{animation-delay:.5s}
-.howto-title{font-family:'Nunito',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#e67e22;animation:titleWave 3s ease-in-out infinite}
+.howto-title{font-family:'Nunito',sans-serif;font-size:clamp(1.6rem,10vw,3rem);font-weight:900;color:#e67e22;animation:titleWave 3s ease-in-out infinite}
 .howto-steps{display:flex;flex-direction:column;gap:10px;margin:14px 0;text-align:left}
 .howto-step{
   display:flex;align-items:center;gap:12px;
@@ -544,7 +544,7 @@ body{
 .howto-step:nth-child(3){animation-delay:.4s}
 .howto-step:nth-child(4){animation-delay:.55s}
 .step-icon{font-size:1.8rem;flex-shrink:0}
-.step-text{font-family:'Patrick Hand',cursive;font-size:clamp(.95rem,1.6vw,3rem);color:#3d2b1f;line-height:1.4}
+.step-text{font-family:'Patrick Hand',cursive;font-size:clamp(2rem,1.6vw,3rem);color:#3d2b1f;line-height:1.4}
 .step-text strong{color:#e67e22}
 .howto-score-info{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}
 .score-chip{font-family:'Patrick Hand',cursive;font-size:clamp(.75rem,1.3vw,.9rem);font-weight:700;padding:4px 12px;border-radius:20px;border:2px solid}
